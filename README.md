@@ -3,6 +3,8 @@ Some test code for Elan's Touchpad Driver. This code isn't production ready, jus
 
 I noticed there was no documentation or any info about Elan Touchpad Driver (ETD.sys) so I reverse engineered the interesting parts of the driver.
 
+This is great for ThinkPads (ThinkPad 13, T440, ...). Also tested on Acer and Asus laptops from 2012-2015.
+
 This allows you to read raw input data from Elan hardware if you have Elan's first party driver installed. It's possible that you have a touchpad made by Elan, but your manufacturer like Asus or MSI might have given you their own driver or be using the built in Windows driver. It's possible to install ETDWare from a driver online for these, otherwise you'd have to reverse engineer that manufacturer's or Microsoft's driver to get raw input data.
 
 This raw input data includes:
@@ -24,6 +26,9 @@ This raw input data includes:
     - ThinkPad's precision touchpads made by Elan, for example on ThinkPad 13, are ones that send 32 packets per event.
     - You can differentiate between TrackPoint button clicks and ClickPad clicks by the first packet's value's 6th bit. For example, if the touchpad was clicked or touchpad finger event the first packet's value might be 0x5D (0101 1011), and if the left mouse above the ClickPad is clicked, this is 0x5F (0101 1111), so to check if input was TrackPoint input you can do something like ((packets[0] & 0x4) >> 2).
     - TrackPoint events are 7 packets long.
+    - You can disable the TrackPoint in ELAN TrackPoint Settings, or make your own implementation to disable the trackpoint in your own app, then you can read the raw TrackPoint data and TrackPoint button presses without it moving the mouse and stuff. You could 3D Print accessories, take off the TrackPoint cap and place it on there to turn the TrackPoint into a joystick, accelerometer, wind meter, scale, whatever you want, though TrackPoints aren't super accurate, you can have some fun with it.
+
+Not all protocols are implemented yet. As far as I can tell there are 2 more protocols. If it doesn't work for your touchpad it shoud normally say your protocol isn't implemented yet, you can just observe how the packet values change as you move your finger over the touchpad to find which packet reports what and implement it yourself.
 
 You can differentiate between an SMBus and PS/2 touchpad by the packet count like Elan's own stuff does or some other way. I'm pretty sure all SMBus touchpads send 32 packets, and TrackPoint input sends 7 packets.
 
