@@ -5,7 +5,7 @@ I noticed there was no documentation or any info about Elan Touchpad Driver (ETD
 
 This is great for ThinkPads (ThinkPad 13, T440, ...). Also tested on Acer and Asus laptops from 2012-2015.
 
-This allows you to read raw input data from Elan hardware if you have Elan's first party driver installed. It's possible that you have a touchpad made by Elan, but your manufacturer like Asus or MSI might have given you their own driver or be using the built in Windows driver. It's possible to install ETDWare from a driver online for these, otherwise you'd have to reverse engineer that manufacturer's or Microsoft's driver to get raw input data.
+This allows you to read raw touchpad/trackpad input data from Elan hardware if you have Elan's first party driver installed. It's possible that you have a touchpad made by Elan, but your manufacturer like Asus or MSI might have given you their own driver or be using the built in Windows driver. It's possible to install ETDWare from a driver online for these, otherwise you'd have to reverse engineer that manufacturer's or Microsoft's driver to get raw input data.
 
 This raw input data includes:
 
